@@ -4,6 +4,14 @@ import matplotlib.pyplot as plt
 import sys
 from neuralnetwork import NeuralNetwork
 
+### Set the hyperparameters here ###
+epochs = 2000
+learning_rate = 0.05
+hidden_nodes = 30
+output_nodes = 1
+
+
+# Prep data
 data_path = 'Bike-Sharing-Dataset/hour.csv'
 rides = pd.read_csv(data_path)
 dummy_fields = ['season', 'weathersit', 'mnth', 'hr', 'weekday']
@@ -38,12 +46,6 @@ val_features, val_targets = features[-60*24:], targets[-60*24:]
 
 def MSE(y, Y):
 	return np.mean((y-Y)**2)
-
-### Set the hyperparameters here ###
-epochs = 100
-learning_rate = 0.1
-hidden_nodes = 2
-output_nodes = 1
 
 N_i = train_features.shape[1]
 network = NeuralNetwork(N_i, hidden_nodes, output_nodes, learning_rate)
